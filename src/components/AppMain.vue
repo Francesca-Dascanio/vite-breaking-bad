@@ -12,9 +12,12 @@ export default {
     created() {
         axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
         .then ((response) => {
+
+            console.log(response);
      
-            this.store = response.data.data.slice(0,20);
-            console.log(this.store);
+            this.store.cards = response.data.data.slice(0,20);
+            console.log(this.store.cards);
+            
         });
     }
 }
@@ -41,10 +44,9 @@ export default {
                     </div>
                     <div class="cards-board">
                         <!-- card singola -->
-                        <div class="card" v-for="card in store.cards">
+                        <div class="card" v-for="(card, index) in store.cards">
                             <div class="card-image">
-                                <!-- <img src="" alt="card-1"> -->
-                                IMG
+                                <img :src="card.card_images[0].image_url" alt="card-1">
                             </div>
                             <div class="card-text">
                                 <div>
@@ -114,6 +116,10 @@ div {
                 .card-image {
                     max-width: 100%;
                     height: auto;
+
+                    img {
+                        width: 100%;
+                    }
                 }
 
                 .card-text {
