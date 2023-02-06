@@ -104,8 +104,12 @@ div {
     }
 }
 
-.spinner.container {
-    background-color: blue;
+.spinner-container {
+    background-color: $primary-color;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
     .lds-spinner {
     color: official;
     display: inline-block;
