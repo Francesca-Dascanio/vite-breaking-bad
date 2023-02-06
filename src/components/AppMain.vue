@@ -1,8 +1,22 @@
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
+import { store } from '../store';
 
 export default {
     name: 'AppMain',
+    data () {
+        return {
+            store
+        }
+    },
+    created() {
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+        .then ((response) => {
+     
+            this.store = response.data;
+            console.log(this.store);
+        });
+    }
 }
 </script>
 
