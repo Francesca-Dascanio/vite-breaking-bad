@@ -1,0 +1,120 @@
+<script>
+// import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+    name: 'AppMain',
+}
+</script>
+
+<template>
+    <div>
+        <div class="container">
+            <div class="section-1">
+                <form action="">
+                    <select name="" id="type">
+                        <option value="alien">
+                            Alien
+                        </option>
+                        <option value="alien">
+                            Alien
+                        </option>
+                        <option value="alien">
+                            Alien
+                        </option>
+                        <option value="alien">
+                            Alien
+                        </option>
+                    </select>
+                </form>
+            </div>
+            <div class="section-2">
+                <div class="container-internal">
+                    <div class="cards-number">
+                        <strong>
+                            Found NR cards
+                        </strong>
+                    </div>
+                    <div class="cards-board">
+                        <!-- card singola -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://via.placeholder.com/150x250" alt="card-1">
+                            </div>
+                            <div class="card-text">
+                                <div>
+                                    DEVICE
+                                </div>
+                                <div>
+                                    TYPE
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<style lang="scss" scoped>
+@use '../styles/partials/variables.scss' as *;
+
+div {
+    width: 100%;
+    background-color: $primary-color;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+}
+
+.section-1 {
+    padding: 1rem;
+
+    select {
+        padding: 0.5rem 2rem;
+    }
+}
+
+.section-2 {
+    background-color: $secondary-color;
+
+    .container-internal {
+        max-width: 1100px;
+        margin: 0 auto;
+        background-color: $secondary-color;
+        padding: 3rem 0 1rem;
+
+        .cards-number {
+            background-color: $tertiary-color;
+            color: $secondary-color;
+            padding: 1rem;
+        }
+
+        .cards-board {
+            background-color: $secondary-color;
+            display: flex;
+            flex-wrap: nowrap;
+
+            .card {
+
+                width: 150px;
+
+                .card-image {
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                .card-text {
+                    text-align: center;
+                    padding: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+</style>
