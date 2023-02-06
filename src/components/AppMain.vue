@@ -13,7 +13,7 @@ export default {
         axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
         .then ((response) => {
      
-            this.store = response.data;
+            this.store = response.data.data.slice(0,20);
             console.log(this.store);
         });
     }
@@ -29,15 +29,6 @@ export default {
                         <option value="alien">
                             Alien
                         </option>
-                        <option value="alien">
-                            Alien
-                        </option>
-                        <option value="alien">
-                            Alien
-                        </option>
-                        <option value="alien">
-                            Alien
-                        </option>
                     </select>
                 </form>
             </div>
@@ -45,21 +36,22 @@ export default {
                 <div class="container-internal">
                     <div class="cards-number">
                         <strong>
-                            Found NR cards
+                            Found {{ store.cards.length }} cards
                         </strong>
                     </div>
                     <div class="cards-board">
                         <!-- card singola -->
-                        <div class="card">
+                        <div class="card" v-for="card in store.cards">
                             <div class="card-image">
-                                <img src="https://via.placeholder.com/150x250" alt="card-1">
+                                <!-- <img src="" alt="card-1"> -->
+                                IMG
                             </div>
                             <div class="card-text">
                                 <div>
-                                    DEVICE
+                                    {{ card.name }}
                                 </div>
                                 <div>
-                                    TYPE
+                                    {{ card.archetype }}
                                 </div>
                             </div>
                         </div>
@@ -111,11 +103,13 @@ div {
         .cards-board {
             background-color: $secondary-color;
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
+            justify-content: space-between;
 
             .card {
 
-                width: 150px;
+                width: calc((100% / 5) - 5px);
+                margin-bottom: 10px;
 
                 .card-image {
                     max-width: 100%;
