@@ -1,5 +1,5 @@
 <script>
-import SectionOne from './Main/SectionOne.vue';
+import SectionOne from './SectionOne.vue';
 import Card from './Main/Card.vue';
 import axios from 'axios';
 import { store } from '../store';
@@ -19,11 +19,33 @@ export default {
         axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
         .then ((response) => {
 
-            console.log(response);
-     
-            this.store.cards = response.data.data.slice(0,20);
+            this.store.cards = response.data.data.slice(0,40);
             console.log(this.store.cards);
+
+            // Crea array di archetypes
+            for (let i = 0; i < this.store.cards.length; i++) {
+                this.store.allArchetypes.push(this.store.cards[i].archetype);
+            }
+
+            console.log(this.store.allArchetypes);
             
+            // Crea array con i tipi di archetypes
+            for (let i = 0; i < this.store.allArchetypes.length; i++) {
+
+                if (this.store.typesArchetypes.includes(this.store.allArchetypes[i])) {
+                // Non succede nulla
+                }
+                else {
+                    this.store.typesArchetypes.push(this.store.allArchetypes[i]);
+
+                    // if (this.store.allArchetypes[i] == undefined) {
+                    //     this.store.allArchetypes[i] = 'undefined';
+                    // }
+                    
+                }
+            }
+
+            console.log(this.store.typesArchetypes); 
         });
     }
 }

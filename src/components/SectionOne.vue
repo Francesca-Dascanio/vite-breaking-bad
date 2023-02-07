@@ -1,10 +1,11 @@
 <script>
+import { store } from '../store';
 
 export default {
     name: 'SectionOne',
     data () {
         return {
-            
+            store
         }
     },
 }
@@ -13,9 +14,9 @@ export default {
 <template>
     <div class="section-1">
         <form action="">
-            <select name="" id="type">
-                <option value="alien">
-                    Alien
+            <select name="search" id="type">
+                <option :value="item" v-for="item in store.typesArchetypes">
+                    {{ item }}
                 </option>
             </select>
         </form>
