@@ -1,14 +1,20 @@
 <script>
+import { store } from '../store';
 
 export default {
     name: 'Card',
     data () {
         return {
-            
+            store
         }
     },
     props: {
         card: Object
+    },
+    methods: {
+        filterCards: function () {
+            
+        }
     }
 }
 </script>

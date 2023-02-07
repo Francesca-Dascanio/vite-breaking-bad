@@ -1,6 +1,6 @@
 <script>
 import SectionOne from './SectionOne.vue';
-import Card from './Main/Card.vue';
+import Card from './Card.vue';
 import axios from 'axios';
 import { store } from '../store';
 
@@ -20,14 +20,12 @@ export default {
         .then ((response) => {
 
             this.store.cards = response.data.data.slice(0,40);
-            console.log(this.store.cards);
 
             // Crea array di archetypes
             for (let i = 0; i < this.store.cards.length; i++) {
                 this.store.allArchetypes.push(this.store.cards[i].archetype);
             }
 
-            console.log(this.store.allArchetypes);
             
             // Crea array con i tipi di archetypes
             for (let i = 0; i < this.store.allArchetypes.length; i++) {
@@ -44,8 +42,6 @@ export default {
                     
                 }
             }
-
-            console.log(this.store.typesArchetypes); 
         });
     }
 }
@@ -64,8 +60,15 @@ export default {
                         </strong>
                     </div>
 
-                    <div v-if="store.cards.length < 20" class="spinner-container">
+                    <!-- <div v-if="store.cards.length < 40" class="spinner-container">
                         <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </div> -->
+
+                    <div class="cards-board" v-if="store.selectedOption = ''">
+                        <!-- card singola -->
+                        <div class="card" v-for="(card, index) in store.cards">
+                            <Card :card="card"/>
+                        </div>
                     </div>
 
                     <div class="cards-board" v-else>
