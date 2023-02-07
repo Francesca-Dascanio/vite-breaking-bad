@@ -15,6 +15,17 @@ export default {
             store
         }
     },
+    computed: {
+        filteredStoreCards () {
+            if (this.store.selectedOption == '') {
+                return this.store.cards;
+            }
+            else {
+                
+                return this.store.cards.filter((card) => card.archetype == this.store.selectedOption);
+            }
+        }
+    },
     created() {
         axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
         .then ((response) => {
@@ -56,27 +67,17 @@ export default {
                 <div class="container-internal">
                     <div class="cards-number">
                         <strong>
-                            Found {{ store.cards.length }} cards
+                            Found {{ filteredStoreCards.length }} cards
                         </strong>
                     </div>
 
-                    <!-- <div v-if="store.cards.length < 40" class="spinner-container">
-                        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                    </div> -->
-
-                    <div class="cards-board" v-if="store.selectedOption = ''">
+                    <div class="cards-board">
                         <!-- card singola -->
-                        <div class="card" v-for="(card, index) in store.cards">
+                        <div class="card" v-for="(card, index) in filteredStoreCards">
                             <Card :card="card"/>
                         </div>
                     </div>
 
-                    <div class="cards-board" v-else>
-                        <!-- card singola -->
-                        <div class="card" v-for="(card, index) in store.cards">
-                            <Card :card="card"/>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -121,7 +122,7 @@ div {
 
             .card {
 
-                width: calc((100% / 5) - 5px);
+                width: calc((100% / 5) - 10px);
                 margin-bottom: 10px;
             }
 

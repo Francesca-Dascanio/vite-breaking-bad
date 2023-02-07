@@ -30,7 +30,7 @@ export default {
         <form action="">
             <select name="select" id="type" @change="getOption()">
                 <option>
-                    Select an option
+                    <!-- Vuoto -->
                 </option>
                 <option :value="item" v-for="item in store.typesArchetypes">
                     {{ item }}
